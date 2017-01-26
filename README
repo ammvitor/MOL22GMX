@@ -1,0 +1,28 @@
+MOL22GMX
+GAFF parametrizer for GROMACS
+Cunha, JVS and Bronowska, AK                    
+Newcastle University
+
+MOL22GMX is a fast way to parametrize small molecules without the use of ambertools (mostly), in a fast ans simple way.
+The main goal is to mimetize PDB2GMX for small molecules using GAFF2 Forcefield.
+You just need your receptor gro, your ligand mol2 (with gaff naming)  and the topol.top file from pdb2gmx
+Output are the complex gro, the atomtypes, the topology itp and the topology.top.new, a topology file with with the ligand topologies included. 
+1-Instalation
+
+Enter the src/ folder and 
+make
+
+the bin MOL22GMX will be created in ..
+
+2 - How to use
+Run MOL22GMX with the following flags:
+-i Ligand MOL2 with gaff atomnames (do not work with sybil types)
+-x The output name for the ligand residue i.e carbon.itp
+-g The gro output of the ligand by itself
+-p input name of the gro file of the receptor without the ligand
+-c Output of the Complex gro (ligand+receptor)
+-t topol.top file input. MOL22GMX will generate a topol.top.new with the include of the atomtype and itp for the ligands int he right ordem and the ligand name in the [molecules] area.
+
+3- Database
+gaff2.dat is the database for the parameters extracted from amber16, with the file structure modified for our use. Sometimes the program will not find the paramters for certain configuration of a molecule, so please, run parmchk from ambertools and add the parameters in the gaff2.dat
+
